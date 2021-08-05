@@ -23,7 +23,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.desfio.sbf.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.desafio.sbf.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(metaData());
