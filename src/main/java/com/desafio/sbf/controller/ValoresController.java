@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,6 +35,16 @@ public class ValoresController {
 	
 	@RequestMapping(value = "/recuperarCotacaoInterna/{valor}", method = RequestMethod.GET)
 	public ResponseEntity<List<Valor>> recuperarCotacaoInterna(@PathVariable("valor") Double valor) throws BusinessException {		
+		try {
+			return new ResponseEntity<>(valoresBO.recuperarCotacaoInterna(valor), HttpStatus.OK);
+		} catch (Exception e) {
+			throw new BusinessException(e.getMessage());
+		}
+	}
+	
+	@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+	@RequestMapping(value = "/cotacaoAutenticada/{valor}", method = RequestMethod.GET)
+	public ResponseEntity<List<Valor>> cotacaoAutenticada(@PathVariable("valor") Double valor) throws BusinessException {		
 		try {
 			return new ResponseEntity<>(valoresBO.recuperarCotacaoInterna(valor), HttpStatus.OK);
 		} catch (Exception e) {
