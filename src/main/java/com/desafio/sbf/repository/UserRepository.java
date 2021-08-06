@@ -17,6 +17,6 @@ public interface UserRepository extends PagingAndSortingRepository<Usuario, Long
 
 	Boolean existsByEmail(String email);
 
-	@Query(value = "SELECT * FROM public.minha_conta_usuario where username = :usuario", nativeQuery = true)
+	@Query(value = "SELECT * FROM public.usuario where username = :usuario", nativeQuery = true)
 	Usuario listarDadosMinhaConta(@Param("usuario") String usuario);
 }
