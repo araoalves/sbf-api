@@ -70,7 +70,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/authentication/register").permitAll()
 		.antMatchers("/valores/recuperarCotacaoExterna/{valor}").permitAll()
 		.antMatchers("/valores/recuperarCotacaoInterna/{valor}").permitAll()
-		.antMatchers("/authentication/register").permitAll()
 		.anyRequest().authenticated().and()				
 		.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement()
 		.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
