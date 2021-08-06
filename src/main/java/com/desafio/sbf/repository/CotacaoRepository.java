@@ -7,5 +7,5 @@ import com.desafio.sbf.model.CotacaoInterna;
 public interface CotacaoRepository extends JpaRepository<CotacaoInterna, Long>{
 
 	CotacaoInterna getByMoeda(String moeda) throws Exception;
-
+	
 }
