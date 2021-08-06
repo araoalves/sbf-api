@@ -10,4 +10,5 @@
 - &#9745; Documentação com Swagger
 - &#9745; RestTemplate consumo de APIs Externas
 - &#9745; [API](https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,INR-BRL) externa de cotação
+- &#9745; JOB Scheduling
 
