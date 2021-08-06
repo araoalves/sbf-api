@@ -2,20 +2,29 @@ package com.desafio.sbf.service.jwt;
 
 import java.util.Calendar;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.desafio.sbf.config.jwt.JwtUtils;
 import com.desafio.sbf.enums.ERole;
 import com.desafio.sbf.model.Role;
 import com.desafio.sbf.model.Usuario;
+import com.desafio.sbf.model.payload.request.LoginRequest;
 import com.desafio.sbf.model.payload.request.SignupRequest;
 import com.desafio.sbf.repository.RoleRepository;
 import com.desafio.sbf.repository.UserRepository;
+import com.desafio.sbf.model.payload.response.JwtResponse;
 
 @Service
 public class JwtUserDetailsService {
@@ -28,6 +37,12 @@ public class JwtUserDetailsService {
 	
 	@Autowired
 	RoleRepository roleRepository;	
+	
+	@Autowired
+	JwtUtils jwtUtils;
+	
+	@Autowired
+	private AuthenticationManager authenticationManager;
 
 	public Usuario save(@Valid SignupRequest signUpRequest) throws Exception {
 		
@@ -95,6 +110,29 @@ public class JwtUserDetailsService {
 				Usuario usuario = userRepository.save(user);				
 				
 				return usuario;
+	}
+
+	public JwtResponse login(@Valid LoginRequest loginRequest) {
+		
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(
+						loginRequest.getUsuario(), 
+						loginRequest.getPassword())
+				);
+
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		String jwt = jwtUtils.generateJwtToken(authentication);
+		
+		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();		
+		List<String> roles = userDetails.getAuthorities().stream()
+				.map(item -> item.getAuthority())
+				.collect(Collectors.toList());
+		
+		return new JwtResponse(jwt, 
+				 userDetails.getId(), 
+				 userDetails.getUsername(), 
+				 userDetails.getEmail(), 
+				 roles);
 	}
 
 }
