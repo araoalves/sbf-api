@@ -50,4 +50,8 @@ public class ValoresBO {
 		return valores;
 	}
 
+	public CotacaoInterna cadastrarCotacao(CotacaoInterna cotacaoInterna) {
+		return cotacaoRepository.save(cotacaoInterna);
+	}
+
 }
