@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  sbf-api:
+    build:
+      context: .
+    depends_on:
+      - docker-postgres
+    ports: 
+      - 9500:9500
+      
+  docker-postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=sbf
+      - POSTGRES_USER=sbf
+      - POSTGRES_PASSWORD=sbf              
+    ports:
+      - 6543:6543/tcp

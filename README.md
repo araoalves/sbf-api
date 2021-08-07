@@ -15,4 +15,5 @@
 - &#9745; JOB Scheduling
 - &#9745; Sprint Security (RULES and Permissions)
 - &#9745; Autenticação JWT
-
+- &#9745; Multi Context (prod, dev) Spring Profile
+- &#9745; Deploy no Docker
