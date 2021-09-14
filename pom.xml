@@ -88,14 +88,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<finalName>sbf-api</finalName>
-				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-failsafe-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>sbf-api</finalName>
 	</build>
 
 </project>
