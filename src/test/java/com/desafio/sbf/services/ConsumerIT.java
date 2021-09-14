@@ -19,7 +19,7 @@ import lombok.ToString;
 
 @SpringBootTest
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class ConsumerTest {
+public class ConsumerIT {
 
 	private final Utilitarios utilitarios;
     private final Consumer consumer;

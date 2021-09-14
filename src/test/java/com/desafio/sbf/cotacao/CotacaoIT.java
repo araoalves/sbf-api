@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 
 @SpringBootTest
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-public class CotacaoTest {
+public class CotacaoIT {
     
 	private final CotacaoRepository cotacaoRepository;
 	

@@ -92,6 +92,9 @@
 					<finalName>sbf-api</finalName>
 				</configuration>
 			</plugin>
+			<plugin>
+				<artifactId>maven-failsafe-plugin</artifactId>
+			</plugin>
 		</plugins>
 	</build>
 
