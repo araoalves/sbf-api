@@ -2,15 +2,6 @@
  agent any
  stages{ 
     
-         
-    
-    stage('Git') { 
-        steps {
-            echo "Cloning" 
-            git branch: '*****', url: 'https://github.com/araoalves/sbf-api.git'
-    
-        }
-    }
     
     stage('clean') {
        
