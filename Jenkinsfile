@@ -1,15 +1,5 @@
-pipeline {
-    agent none
-   stages {     
-    stage('Maven Install') {
-      agent {         
-       docker {          
-         image 'maven 3.8.2'         
-     }       
-  }       
+pipeline {     
   steps {
        sh 'mvn clean install'
        }
-     }
-   }
  }
