@@ -1,5 +1,10 @@
 pipeline {     
-  steps {
-       sh 'mvn clean install'
-       }
+	  stages {
+		stage('Compile') {
+			steps {
+				echo "-=- compiling project -=-"
+				sh "./mvnw clean install"
+			}
+		}
+	  }
  }
