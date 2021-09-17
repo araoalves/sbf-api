@@ -6,6 +6,11 @@
     stage('clean') {
        
        steps{
+       
+       withMaven(maven: 'maven 3.8.2') {
+		   'clean install'
+		}
+       
            echo "Cleaning the project"
            sh 'mvn clean'
        }
