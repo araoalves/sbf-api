@@ -7,7 +7,7 @@
        
        steps{
            echo "Cleaning the project"
-           bat 'mvn clean'
+           sh 'mvn clean'
        }
     }
     
@@ -15,7 +15,7 @@
         
         steps {
             echo "Doing the tests"
-            bat 'mvn test'
+            sh 'mvn test'
          
             }
             
@@ -25,7 +25,7 @@
     stage('MVN PACKAGE') {
        steps{
            echo "packing the project";
-           bat 'mvn package';
+           sh 'mvn package';
        }
        post{
            success {
